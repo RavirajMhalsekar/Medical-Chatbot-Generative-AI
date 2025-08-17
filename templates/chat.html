@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+    <div class="container">
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <img src="https://cdn-icons-png.flaticon.com/512/387/387569.png" alt="User Image">
+                    <div class="chat-header-text">
+                        <h2>Medical Chatbot</h2>
+                        <p>Ask me anything!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-body" id="chat-body">
+                <!-- Chat messages will be appended here -->
+            </div>
+            <div class="chat-footer">
+                <form id="messageArea" class="message-form">
+                    <input type="text" id="text" name="msg" placeholder="Type your message..." autocomplete="off" required>
+                    <button type="submit" id="send"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#messageArea").on("submit", function(event) {
+                event.preventDefault();
+                const messageText = $("#text").val();
+                if (messageText.trim() === "") {
+                    return;
+                }
+
+                const userHtml = `
+                    <div class="chat-message user">
+                        <div class="message-content">${messageText}</div>
+                    </div>`;
+                $("#chat-body").append(userHtml);
+                $("#text").val("");
+                $("#chat-body").scrollTop($("#chat-body")[0].scrollHeight);
+
+                $.ajax({
+                    data: {
+                        msg: messageText,
+                    },
+                    type: "POST",
+                    url: "/get",
+                }).done(function(data) {
+                    const botHtml = `
+                        <div class="chat-message bot">
+                            <div class="message-content">${data}</div>
+                        </div>`;
+                    $("#chat-body").append(botHtml);
+                    $("#chat-body").scrollTop($("#chat-body")[0].scrollHeight);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

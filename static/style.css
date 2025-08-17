@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.chat-container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.chat-header {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+}
+
+.chat-header-info {
+    display: flex;
+    align-items: center;
+}
+
+.chat-header-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.chat-header-text h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.chat-header-text p {
+    margin: 0;
+    color: #666;
+}
+
+.chat-body {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #f9f9f9;
+}
+
+.chat-message {
+    display: flex;
+    max-width: 70%;
+}
+
+.chat-message.user {
+    align-self: flex-end;
+}
+
+.chat-message.bot {
+    align-self: flex-start;
+}
+
+.message-content {
+    padding: 0.75rem 1rem;
+    border-radius: 15px;
+    line-height: 1.5;
+}
+
+.chat-message.user .message-content {
+    background-color: #007bff;
+    color: #fff;
+    border-top-right-radius: 0;
+}
+
+.chat-message.bot .message-content {
+    background-color: #e9e9eb;
+    color: #333;
+    border-top-left-radius: 0;
+}
+
+.chat-footer {
+    padding: 1rem;
+    border-top: 1px solid #e0e0e0;
+    background-color: #ffffff;
+}
+
+.message-form {
+    display: flex;
+    align-items: center;
+}
+
+.message-form input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    background-color: #f0f4f8;
+    color: #333;
+    outline: none;
+}
+
+.message-form button {
+    background: none;
+    border: none;
+    color: #007bff;
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 0;
+    }
+
+    .chat-container {
+        border-radius: 0;
+    }
+}
