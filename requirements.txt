@@ -10,3 +10,4 @@ langchain-groq
 langchain_experimental
 -e .
 gunicorn
+huggingface-hub==0.22.2
